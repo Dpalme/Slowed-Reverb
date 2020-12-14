@@ -32,25 +32,18 @@
   <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/peoria-0-4-2.css">
 </head>
 
-<body>
+<body class="night">
   <div class="container mt-1">
-    <h1 class="my-1">Alas</h1>
-    <audio src="./bass.mp3" type="audio/mpeg"></audio>
-    <audio src="./chords.mp3" type="audio/mpeg"></audio>
-    <audio src="./drums.mp3" type="audio/mpeg"></audio>
+    <a href="../" class="blue title-3">
+      <</a> <h1 class="my-1 text-c">Alas</h1>
+        <audio src="./bass.mp3" type="audio/mpeg"></audio>
+        <audio src="./chords.mp3" type="audio/mpeg"></audio>
+        <audio src="./drums.mp3" type="audio/mpeg"></audio>
   </div>
 
-  <script>
-    document.querySelectorAll('audio').forEach(audio => {
-      audio.addEventListener('ended', function () {
-        this.currentTime = 0;
-        this.playbackRate = Math.random() * (.5) + 0.75;
-        this.play();
-      }, false);
-      audio.playbackRate = Math.random() * (.5) + 0.75;
-      audio.play();
-    });
-  </script>
+  <canvas id="output" class="center-a" height="500px" width="500px"></canvas>
+
+  <script src="../main.js"></script>
 </body>
 
 </html>

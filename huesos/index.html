@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Primary Meta Tags -->
-  <title>Slowed + Reverb</title>
+  <title>Huesos</title>
   <meta name="title" content="Slowed + Reverb">
   <meta name="description" content="Generative Slowcore.">
 
@@ -29,29 +29,22 @@
 
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/peoria-0-4-2.css">
+  <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/peoria-0-4-4.css">
 </head>
 
-<body>
+<body class="night">
   <div class="container mt-1">
-    <h1 class="my-1">Huesos</h1>
-    <audio src="./bass.mp3" type="audio/mpeg"></audio>
-    <audio src="./Chords.mp3" type="audio/mpeg"></audio>
-    <audio src="./lead.mp3" type="audio/mpeg"></audio>
-    <audio src="./drums.mp3" type="audio/mpeg"></audio>
+    <a href="../" class="blue title-3">
+      <</a> <h1 class="my-1 text-c">Huesos</h1>
+        <audio src="./bass.mp3" type="audio/mpeg"></audio>
+        <audio src="./Chords.mp3" type="audio/mpeg"></audio>
+        <audio src="./lead.mp3" type="audio/mpeg"></audio>
+        <audio src="./drums.mp3" type="audio/mpeg"></audio>
   </div>
 
-  <script>
-    document.querySelectorAll('audio').forEach(audio => {
-      audio.addEventListener('ended', function () {
-        this.currentTime = 0;
-        this.playbackRate = Math.random() * (.5) + 0.75;
-        this.play();
-      }, false);
-      audio.playbackRate = Math.random() * (.5) + 0.75;
-      audio.play();
-    });
-  </script>
+  <canvas id="output" class="center-a" height="500px" width="500px"></canvas>
+
+  <script src="../main.js"></script>
 </body>
 
 </html>
