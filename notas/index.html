@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Primary Meta Tags -->
-  <title>Slowed + Reverb</title>
+  <title>Notas</title>
   <meta name="title" content="Slowed + Reverb">
   <meta name="description" content="Generative Slowcore.">
 
@@ -29,10 +29,10 @@
 
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/peoria-0-4-2.css">
+  <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/peoria-0-4-4.css">
 </head>
 
-<body>
+<body class="night">
   <div class="container mt-1">
     <h1 class="my-1">Notas</h1>
     <audio src="./bass.mp3" type="audio/mpeg"></audio>
@@ -41,16 +41,64 @@
     <audio src="./lead.mp3" type="audio/mpeg"></audio>
     <audio src="./drums.mp3" type="audio/mpeg"></audio>
 
+    <canvas id="output" class="center-a" height="500px" width="500px"></canvas>
+
     <script>
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+      var audioCtx = new AudioContext();
+
+      let canvas = document.getElementById("output");
+      let ctx = canvas.getContext('2d');
+
+      let analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 2048;
+      let data = new Uint8Array(analyser.frequencyBinCount);
+
       document.querySelectorAll('audio').forEach(audio => {
-        audio.addEventListener('ended', function() {
+        audio.addEventListener('ended', function () {
           this.currentTime = 0;
-          this.playbackRate = Math.random() * (.5) + 0.75;
           this.play();
         }, false);
-        audio.playbackRate = Math.random() * (.5) + 0.75;
+        audio.onplay = () => {
+          audioCtx.resume()
+        };
+
+        var audioStr = audioCtx.createMediaElementSource(audio);
+        audioStr.connect(analyser);
+        audioStr.connect(audioCtx.destination);
+
         audio.play();
       });
+
+      requestAnimationFrame(loopingFunction);
+
+      function loopingFunction() {
+        requestAnimationFrame(loopingFunction);
+        analyser.getByteFrequencyData(data);
+        draw(data);
+      }
+
+      function draw(data) {
+        data = [...data];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let space = canvas.width / data.length;
+        data.forEach((value, i) => {
+          ctx.beginPath();
+          ctx.moveTo(space * i, 0);
+          ctx.lineTo(space * i, canvas.height * (value / 512));
+          ctx.strokeStyle = "white";
+          ctx.stroke();
+        })
+      }
+
+      function change() {
+        document.querySelectorAll('audio').forEach(audio => {
+          audio.playbackRate = Math.random() * (.10) + 0.95;
+        });
+      }
+
+      change()
+      setInterval(change, 10000);
     </script>
   </div>
 </body>
