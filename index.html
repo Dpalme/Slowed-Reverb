@@ -1,0 +1,105 @@
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+
+    <!-- Primary Meta Tags -->
+    <title>Slowed + Reverb</title>
+    <meta name='title' content=''>
+    <meta name='description' content=''>
+    <link rel='icon' type='image/png' href='https://dpalmer.in/img/Dicon.png'>
+
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content='website'>
+    <meta property='og:url' content=''>
+    <meta property='og:title' content=''>
+    <meta property='og:description' content=''>
+    <meta property='og:image' content=''>
+
+    <!-- Twitter -->
+    <meta property='twitter:card' content='summary_large_image'>
+    <meta property='og:url' content=''>
+    <meta property='twitter:title' content=''>
+    <meta property='twitter:description' content=''>
+    <meta property='twitter:image' content=''>
+
+    <!-- CSS -->
+    <link rel='stylesheet' type='text/css' href='https://dpalmer.in/Peoria/css/normalize.css'>
+    <link rel='stylesheet' type='text/css' href='https://dpalmer.in/Peoria/css/peoria-0-4-4.css'>
+
+    <!-- JS -->
+    <script src='https://dpalmer.in/Peoria/peoria_2.js'></script>
+</head>
+
+<body class="night">
+    <header class="h-lg center-x py-sm container">
+        <h4 class="lh-lg col-h">Slowed + Reverb</h4>
+        <div class="col-h lh-lg text-r">
+            <a class="blue col-4">About</a>
+            <a class="blue col-4">About</a>
+            <a class="blue col-4">About</a>
+        </div>
+    </header>
+
+    <div class="container" id="content">
+    </div>
+
+    <script>
+        machines = [{
+                name: 'Alas',
+                genre: 'Reggaeton',
+                link: './alas'
+            }, {
+                name: 'La Caida',
+                genre: 'Psych-Rock',
+                link: './caida'
+            },
+            {
+                name: 'Eerie',
+                genre: 'Slow-core',
+                link: './eerie'
+            }, {
+                name: 'Huesos',
+                genre: 'Post-Rock',
+                link: './huesos'
+            },
+            {
+                name: 'Notas',
+                genre: 'Math-Rock',
+                link: './notas'
+            }
+        ]
+        
+        // create the links to the machines
+        machines.forEach(machine => {
+            objectToContent({
+                type: 'a',
+                class: 'card col-h my-1',
+                href: machine.link,
+                children: [object({
+                    type: 'div',
+                    class: 'col-8',
+                    children: [
+                        object({
+                            type: 'h4',
+                            innerText: machine.name
+                        }),
+                        object({
+                            type: 'p',
+                            class: 'small-body',
+                            innerText: machine.genre
+                        })
+                    ]
+                }), object({
+                    type: 'h1',
+                    class: 'col-4 text-r',
+                    innerText: ">"
+                })]
+            })
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <title>Slowed + Reverb</title>
+  <meta name="title" content="Slowed + Reverb">
+  <meta name="description" content="Generative Slowcore.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:title" content="Slowed + Reverb">
+  <meta property="og:description" content="Generative Slowcore.">
+  <meta property="og:image" content="">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="">
+  <meta property="twitter:title" content="Slowed + Reverb">
+  <meta property="twitter:description" content="Generative Slowcore.">
+  <meta property="twitter:image" content="">
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="https://dpalmer.in/Peoria/css/peoria-0-4-2.css">
+</head>
+
+<body>
+  <div class="container mt-1">
+    <h1 class="my-1">Huesos</h1>
+    <audio src="./bass.mp3" type="audio/mpeg"></audio>
+    <audio src="./Chords.mp3" type="audio/mpeg"></audio>
+    <audio src="./lead.mp3" type="audio/mpeg"></audio>
+    <audio src="./drums.mp3" type="audio/mpeg"></audio>
+  </div>
+
+  <script>
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.addEventListener('ended', function () {
+        this.currentTime = 0;
+        this.playbackRate = Math.random() * (.5) + 0.75;
+        this.play();
+      }, false);
+      audio.playbackRate = Math.random() * (.5) + 0.75;
+      audio.play();
+    });
+  </script>
+</body>
+
+</html>
